@@ -2,7 +2,7 @@
 
 namespace src;
 
-class Task1
+class Task3
 {
     private $inputNumber;
 
@@ -23,16 +23,20 @@ class Task1
         }
     }
 
-    private function test(int $inputNumber): string
+    private function test(int $inputNumber, int $sum = 0, $amount = 0): int
     {
-        $mess = $inputNumber > 30 ? 'More than 30'
-            : ($inputNumber > 20 ? 'More than 20'
-                : ($inputNumber > 10 ? 'More than 10'
-                    : ($inputNumber <= 10 ? 'Equal or less than 10' : '')));
-
-        return $mess;
+        for ($i = 0; $i <= strlen($inputNumber);$i++) {
+            $amount = $inputNumber % 10;
+            $sum = $sum + $amount;
+            $inputNumber = $inputNumber / 10;
+        }
+        if (strlen($sum) > 1) {
+            return $this->test($sum);
+        } else {
+            return $sum;
+        }
     }
 }
 
-$task1 = new Task1(223);
+$task1 = new Task3(5223);
 $task1->main();
