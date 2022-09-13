@@ -4,20 +4,14 @@ namespace src;
 
 class Task1
 {
-    private $inputNumber;
-
-    public function __construct($inputNumber)
-    {
-        $this->inputNumber = $inputNumber;
-    }
-
-    public function main()
+    public function main($inputNumber)
     {
         try {
-            if (!is_int($this->inputNumber)) {
+            if (!is_int($inputNumber)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
             }
-            echo $this->test($this->inputNumber);
+
+            return $this->test($inputNumber);
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -34,5 +28,5 @@ class Task1
     }
 }
 
-$task1 = new Task1(223);
-$task1->main();
+$task1 = new Task1();
+$task1->main(-10);
