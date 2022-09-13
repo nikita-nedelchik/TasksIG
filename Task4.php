@@ -4,20 +4,14 @@ namespace src;
 
 class Task4
 {
-    private $input;
-
-    public function __construct($input)
-    {
-        $this->input = $input;
-    }
-
-    public function main()
+    public function main($input)
     {
         try {
-            if (!is_string($this->input)) {
+            if (!is_string($input)) {
                 throw new \InvalidArgumentException('Exception: the argument must be string');
             }
-            echo $this->getCapsCase($this->input);
+
+            return $this->getCapsCase($input);
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -35,5 +29,5 @@ class Task4
     }
 }
 
-$da = new Task4('The quick-brown_fox jumps over the_lazy-dog');
-$da->main();
+$task4 = new Task4();
+echo $task4->main('_test_was not-so Interesting_that_funny');
