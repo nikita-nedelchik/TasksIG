@@ -11,10 +11,11 @@ class Task7
                 throw new \InvalidArgumentException('Exception: the argument must be array');
             } elseif (!is_int($number)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
+            } elseif ($number < 0 || empty($arr) || $number >= count($arr)) {
+                throw new \InvalidArgumentException('Exception: the argument is incorrect');
             }
-            if (!empty($arr) && $number >= 0 && $number < count($arr)) {
-                return $this->getArray($arr, $number);
-            }
+
+            return $this->getArray($arr, $number);
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -27,6 +28,6 @@ class Task7
     }
 }
 
-$myArr = [1, 2, 3, 4, 5];
+$myArr = [2, 3, 3, 4];
 $obj = new Task7();
-$obj->main($myArr, 3);
+$obj->main($myArr, 2);
