@@ -9,10 +9,11 @@ class Task10
         try {
             if (!is_int($number)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
+            } elseif ($number <= 0) {
+                throw new \InvalidArgumentException('Exception: the argument must be positive');
             }
-            if ($number > 0) {
-                return $this->collatz($number);
-            }
+
+            return $this->collatz($number);
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -36,4 +37,3 @@ class Task10
 }
 
 $obj = new Task10();
-$result = $obj->main(1);
