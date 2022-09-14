@@ -4,26 +4,17 @@ namespace src;
 
 class Task7
 {
-    public $arr;
-    private $number;
-
-    public function __construct($arr, $number)
-    {
-        $this->arr = $arr;
-        $this->number = $number;
-    }
-
-    public function main()
+    public function main($arr, $number)
     {
         try {
-            if (!is_array($this->arr)) {
+            if (!is_array($arr)) {
                 throw new \InvalidArgumentException('Exception: the argument must be array');
-            } elseif (!is_int($this->number)) {
+            } elseif (!is_int($number)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
             }
-            echo('<pre>');
-            print_r($this->getArray($this->arr, $this->number));
-            echo('</pre>');
+            if (!empty($arr) && $number >= 0 && $number < count($arr)) {
+                return $this->getArray($arr, $number);
+            }
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -37,5 +28,5 @@ class Task7
 }
 
 $myArr = [1, 2, 3, 4, 5];
-$obj = new Task7($myArr, 3);
-$obj->main();
+$obj = new Task7();
+$obj->main($myArr, 3);
