@@ -7,8 +7,10 @@ class Task3
     public function main($inputNumber)
     {
         try {
-            if (!is_int($inputNumber) && $inputNumber > 0) {
+            if (!is_int($inputNumber)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
+            } elseif ($inputNumber < 10) {
+                throw new \InvalidArgumentException('Exception: the argument must more than 10');
             }
 
             return $this->test($inputNumber);
@@ -17,20 +19,11 @@ class Task3
         }
     }
 
-    private function test(int $inputNumber, int $sum = 0, $amount = 0): int
+    private function test(int $inputNumber): int
     {
-        for ($i = 0; $i <= strlen($inputNumber);$i++) {
-            $amount = $inputNumber % 10;
-            $sum = $sum + $amount;
-            $inputNumber = $inputNumber / 10;
-        }
-        if (strlen($sum) > 1) {
-            return $this->test($sum);
-        } else {
-            return $sum;
-        }
+        return ($inputNumber - 1) % 9 + 1;
     }
 }
 
-$task1 = new Task3(5223);
-echo $task1->main(1);
+$task1 = new Task3();
+echo $task1->main(9);
