@@ -10,9 +10,11 @@ class Task8
             if (!is_string($json)) {
                 throw new \InvalidArgumentException('Exception: the argument must be string');
             }
-            if ($this->isJson($json)) {
-                return $this->getStr($json);
+            if (!$this->isJson($json)) {
+                throw new \InvalidArgumentException('Exception: the argument is not json');
             }
+
+            return $this->getStr($json);
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -28,19 +30,13 @@ class Task8
         $string = '';
         $arr = json_decode($json, true);
         array_walk_recursive($arr, function ($value, $key) use (&$string) {
-            $string .= "$key : $value \r\n";
+            $string .= "$key: $value\r\n";
         });
 
-        return $string;
+        return substr($string, 0, -2);
     }
 }
 
-$myJson = '{"Title": "The Cuckoos Calling",
-"Author": "Robert Galbraith",
-"Detail":
-{ 
-"Publisher": "Little Brown"
- }
-  }';
+$myJson = '1';
 $obj = new Task8();
 echo $obj->main($myJson);
