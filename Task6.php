@@ -4,27 +4,15 @@ namespace src;
 
 class Task6
 {
-    private $year;
-    private $lastYear;
-    private $month;
-    private $lastMonth;
-    private $day;
-
-    public function __construct($year, $lastYear, $month, $lastMonth)
-    {
-        $this->year = $year;
-        $this->lastYear = $lastYear;
-        $this->month = $month;
-        $this->lastMonth = $lastMonth;
-    }
-
-    public function main()
+    public function main($year, $lastYear, $month, $lastMonth)
     {
         try {
-            if (!is_int($this->year) || !is_int($this->lastYear) || !is_int($this->month) || !is_int($this->lastMonth)) {
+            if (!is_int($year) || !is_int($lastYear) || !is_int($month) || !is_int($lastMonth)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
             }
-            echo $this->checkMondays($this->year, $this->lastYear, $this->month, $this->lastMonth);
+            if (checkdate($month, 1, $year) && checkdate($lastMonth, 1, $lastYear)) {
+                return $this->checkMondays($year, $lastYear, $month, $lastMonth);
+            }
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -32,23 +20,18 @@ class Task6
     private function checkMondays(int $year, int $lastYear, int $month, int $lastMonth, string $day = 'Monday'): int
     {
         $count = 0;
-        while ($lastYear <= $year) {
-            $endMonth = 12;
-            if ($lastYear == $year) {
-                $endMonth = $month;
+        while ($month <= 12) {
+            $result = date('w', mktime(0, 0, 0, date($month), date(1), date($year)));
+            $month++;
+            if ($result == 1) {
+                $count++;
             }
-            while ($lastMonth <= $endMonth) {
-                $result = date('w', mktime(0, 0, 0, date($lastMonth), date('1'), date($lastYear)));
-                if ($result == 1) {
-                    $count++;
-                }
-                $lastMonth++;
-                if ($lastMonth > 12) {
-                    $lastMonth = 1;
-                    $lastYear++;
-
-                    break;
-                }
+            if ($month == $lastMonth && $year == $lastYear) {
+                break;
+            }
+            if ($month > 12) {
+                $month = 1;
+                $year++;
             }
         }
 
@@ -56,5 +39,5 @@ class Task6
     }
 }
 
-$obj = new Task6(2022, 2022, 12, 1);
-$obj->main();
+$obj = new Task6();
+echo $obj->main(1980, 2021, 5, 10);
