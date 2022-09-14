@@ -10,9 +10,11 @@ class Task6
             if (!is_int($year) || !is_int($lastYear) || !is_int($month) || !is_int($lastMonth)) {
                 throw new \InvalidArgumentException('Exception: the argument must be int');
             }
-            if (checkdate($month, 1, $year) && checkdate($lastMonth, 1, $lastYear)) {
-                return $this->checkMondays($year, $lastYear, $month, $lastMonth);
+            if (!checkdate($month, 1, $year) || !checkdate($lastMonth, 1, $lastYear)) {
+                throw new \InvalidArgumentException('Exception: the argument has incorrect date');
             }
+
+            return $this->checkMondays($year, $lastYear, $month, $lastMonth);
         } catch (\InvalidArgumentException $e) {
             echo $e->getMessage();
         }
@@ -40,4 +42,4 @@ class Task6
 }
 
 $obj = new Task6();
-echo $obj->main(1980, 2021, 5, 10);
+echo $obj->main(1900, -1900, 2, 3);
