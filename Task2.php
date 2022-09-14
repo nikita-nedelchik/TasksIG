@@ -19,12 +19,13 @@ class Task2
     }
     private function getDate(string $date): int
     {
-        $res = strtotime($date) - strtotime(date('d-m-Y'));
-        $res = floor($res / (60 * 60 * 24));
+        $date1 = new \DateTime(date('d-m-Y'));
+        $date2 = new \DateTime($date);
+        $interval = $date1->diff($date2);
 
-        return $res;
+        return (int)($interval->days);
     }
 }
 
 $task2 = new Task2();
-echo $task2->main('17-09-2022');
+echo $task2->main('0-0-0');
