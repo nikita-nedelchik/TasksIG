@@ -10,15 +10,11 @@ class Task12
 
     public function __construct($firstNum, $secondNum)
     {
-        try {
-            if (!is_numeric($firstNum) || !is_numeric($secondNum)) {
-                throw new \InvalidArgumentException('Exception: non valid arguments');
-            }
-            $this->firstNum = $firstNum;
-            $this->secondNum = $secondNum;
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
+        if (!is_numeric($firstNum) || !is_numeric($secondNum)) {
+            throw new \InvalidArgumentException('Exception: non valid arguments');
         }
+        $this->firstNum = $firstNum;
+        $this->secondNum = $secondNum;
     }
     public function __toString()
     {
@@ -45,16 +41,12 @@ class Task12
     }
     public function divide()
     {
-        try {
-            if ($this->secondNum === 0) {
-                throw new \DivisionByZeroError('Error: Division by zero error');
-            }
-            $this->result = $this->firstNum / $this->secondNum;
-
-            return $this;
-        } catch (\DivisionByZeroError $e) {
-            echo $e->getMessage();
+        if ($this->secondNum === 0) {
+            throw new \InvalidArgumentException('Error: Division by zero error');
         }
+        $this->result = $this->firstNum / $this->secondNum;
+
+        return $this;
     }
 
     public function addBy($byNum)
@@ -66,16 +58,12 @@ class Task12
 
     public function divideBy($byNum)
     {
-        try {
-            if ($byNum === 0) {
-                throw new \DivisionByZeroError('Error: Division by zero error');
-            }
-            $this->result /= $byNum;
-
-            return $this->result;
-        } catch (\DivisionByZeroError $e) {
-            echo $e->getMessage();
+        if ($byNum === 0) {
+            throw new \InvalidArgumentException('Error: Division by zero error');
         }
+        $this->result /= $byNum;
+
+        return $this->result;
     }
 
     public function multiplyBy($byNum)
