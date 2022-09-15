@@ -33,6 +33,4 @@ class Task8
     }
 }
 
-$myJson = 0;
 $obj = new Task8();
-echo $obj->main($myJson);
