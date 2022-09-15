@@ -51,33 +51,45 @@ class Task12
 
     public function addBy($byNum)
     {
+		if ($byNum === null) {
+			return $this;
+		}
         $this->result += $byNum;
 
-        return $this->result;
+		return $this;
     }
 
     public function divideBy($byNum)
     {
-        if ($byNum === 0) {
-            throw new \InvalidArgumentException('Error: Division by zero error');
+        if ($byNum === null) {
+			return $this;
         }
+		if ($byNum === 0) {
+			throw new \InvalidArgumentException('Error: Division by zero error');
+		}
         $this->result /= $byNum;
 
-        return $this->result;
+		return $this;
     }
 
     public function multiplyBy($byNum)
     {
+		if ($byNum === null) {
+			return $this;
+		}
         $this->result *= $byNum;
 
-        return $this->result;
+		return $this;
     }
 
     public function subtractBy($byNum)
     {
+		if ($byNum === null) {
+			return $this;
+		}
         $this->result -= $byNum;
 
-        return $this->result;
+		return $this;
     }
 }
 
