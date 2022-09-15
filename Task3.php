@@ -23,4 +23,3 @@ class Task3
 }
 
 $task1 = new Task3();
-echo $task1->main(9);
