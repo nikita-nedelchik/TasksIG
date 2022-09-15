@@ -15,6 +15,11 @@ class Task9
         if ($number <= 0 || empty($arr) || count($arr) < 3) {
             throw new \InvalidArgumentException('Exception: the argument is incorrect');
         }
+        foreach ($arr as $value) {
+            if ($value < 0) {
+                throw new \InvalidArgumentException('Exception: the argument is incorrect');
+            }
+        }
 
         return $this->getArr($arr, $number);
     }
@@ -32,4 +37,4 @@ class Task9
 }
 
 $obj = new Task9();
-$res = $obj->main([4, 6, 25], 0);
+
