@@ -6,21 +6,17 @@ class Task9
 {
     public function main($arr, $number)
     {
-        try {
-            if (!is_array($arr)) {
-                throw new \InvalidArgumentException('Exception: the argument must be array');
-            }
-            if (!is_int($number)) {
-                throw new \InvalidArgumentException('Exception: the argument must be int');
-            }
-            if ($number <= 0 || empty($arr)) {
-                throw new \InvalidArgumentException('Exception: the argument is incorrect');
-            }
-
-            return $this->getArr($arr, $number);
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
+        if (!is_array($arr)) {
+            throw new \InvalidArgumentException('Exception: the argument must be array');
         }
+        if (!is_int($number)) {
+            throw new \InvalidArgumentException('Exception: the argument must be int');
+        }
+        if ($number <= 0 || empty($arr) || count($arr) < 3) {
+            throw new \InvalidArgumentException('Exception: the argument is incorrect');
+        }
+
+        return $this->getArr($arr, $number);
     }
     private function getArr(array $arr, int $number): array
     {
@@ -36,4 +32,4 @@ class Task9
 }
 
 $obj = new Task9();
-$res = $obj->main([2, 7, 7, 1, 2, 2, 12, 2, 2], 16);
+$res = $obj->main([4, 6, 25], 0);
