@@ -6,17 +6,14 @@ class Task3
 {
     public function main($inputNumber)
     {
-        try {
-            if (!is_int($inputNumber)) {
-                throw new \InvalidArgumentException('Exception: the argument must be int');
-            } elseif ($inputNumber < 10) {
-                throw new \InvalidArgumentException('Exception: the argument must more than 10');
-            }
-
-            return $this->test($inputNumber);
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
+        if (!is_int($inputNumber)) {
+            throw new \InvalidArgumentException('Exception: the argument must be int');
         }
+        if ($inputNumber < 10) {
+            throw new \InvalidArgumentException('Exception: the argument must more than 10');
+        }
+
+        return $this->test($inputNumber);
     }
 
     private function test(int $inputNumber): int
