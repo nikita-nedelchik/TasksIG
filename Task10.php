@@ -6,17 +6,13 @@ class Task10
 {
     public function main($number)
     {
-        try {
-            if (!is_int($number)) {
-                throw new \InvalidArgumentException('Exception: the argument must be int');
-            } elseif ($number <= 0) {
-                throw new \InvalidArgumentException('Exception: the argument must be positive');
-            }
-
-            return $this->collatz($number);
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
+        if (!is_int($number)) {
+            throw new \InvalidArgumentException('Exception: the argument must be int');
+        } elseif ($number <= 0) {
+            throw new \InvalidArgumentException('Exception: the argument must be positive');
         }
+
+        return $this->collatz($number);
     }
     private function collatz(int $number, array $result = []): array
     {
