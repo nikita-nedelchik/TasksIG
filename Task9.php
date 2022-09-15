@@ -37,4 +37,3 @@ class Task9
 }
 
 $obj = new Task9();
-
