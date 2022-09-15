@@ -38,4 +38,3 @@ class Task6
 }
 
 $obj = new Task6();
-echo $obj->main(1900, -1900, 2, 3);
