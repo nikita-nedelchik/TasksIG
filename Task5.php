@@ -21,16 +21,17 @@ class Task5
         foreach ($this->getFibonacci($n) as $i) {
             if ($i >= $n) {
                 $res = $i;
+
                 break;
             }
         }
 
-        return (int)$res;
+        return $res;
     }
-    private function getFibonacci($n)
+    private function getFibonacci($num): \Generator
     {
-        $recursion = function ($n) use (&$recursion) {
-            return $n < 2 ? $n : $recursion($n - 1) + $recursion($n - 2);
+        $recursion = function ($num) use (&$recursion) {
+            return $num < 2 ? $num : $recursion($num - 1) + $recursion($num - 2);
         };
         for ($i = 0; ; $i++) {
             yield $recursion($i);
