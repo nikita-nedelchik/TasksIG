@@ -22,6 +22,7 @@ class Task5
                 break;
             }
         }
+
         return $fibNum;
     }
 }
