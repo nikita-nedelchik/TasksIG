@@ -16,7 +16,7 @@ class Task5
         return $this->test($n);
     }
 
-    private function test($n)
+    private function test(int $n): int
     {
         foreach ($this->getFibonacci($n) as $i) {
             if ($i >= $n) {
@@ -25,7 +25,7 @@ class Task5
             }
         }
 
-        return $res;
+        return (int)$res;
     }
     private function getFibonacci($n)
     {
