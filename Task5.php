@@ -4,7 +4,7 @@ namespace src;
 
 class Task5
 {
-    public function main($n)
+    public function main($n): int
     {
         if (!is_int($n)) {
             throw new \InvalidArgumentException('invalid argument');
@@ -18,6 +18,7 @@ class Task5
 
     private function test(int $n): int
     {
+        $res = 0;
         foreach ($this->getFibonacci($n) as $i) {
             if ($i >= $n) {
                 $res = $i;
