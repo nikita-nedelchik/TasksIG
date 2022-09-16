@@ -21,25 +21,25 @@ class Task12
         return $this->result;
     }
 
-    public function add()
+    public function add(): Task12
     {
         $this->result = $this->firstNum + $this->secondNum;
 
         return $this;
     }
-    public function subtract()
+    public function subtract(): Task12
     {
         $this->result = $this->firstNum - $this->secondNum;
 
         return $this;
     }
-    public function multiply()
+    public function multiply(): Task12
     {
         $this->result = $this->firstNum * $this->secondNum;
 
         return $this;
     }
-    public function divide()
+    public function divide(): Task12
     {
         if ($this->secondNum === 0) {
             throw new \InvalidArgumentException('Error: Division by zero error');
@@ -49,47 +49,47 @@ class Task12
         return $this;
     }
 
-    public function addBy($byNum)
-    {
-		if ($byNum === null) {
-			return $this;
-		}
-        $this->result += $byNum;
-
-		return $this;
-    }
-
-    public function divideBy($byNum)
+    public function addBy($byNum): Task12
     {
         if ($byNum === null) {
-			return $this;
+            return $this;
         }
-		if ($byNum === 0) {
-			throw new \InvalidArgumentException('Error: Division by zero error');
-		}
+        $this->result += $byNum;
+
+        return $this;
+    }
+
+    public function divideBy($byNum): Task12
+    {
+        if ($byNum === null) {
+            return $this;
+        }
+        if ($byNum === 0) {
+            throw new \InvalidArgumentException('Error: Division by zero error');
+        }
         $this->result /= $byNum;
 
-		return $this;
+        return $this;
     }
 
-    public function multiplyBy($byNum)
+    public function multiplyBy($byNum): Task12
     {
-		if ($byNum === null) {
-			return $this;
-		}
+        if ($byNum === null) {
+            return $this;
+        }
         $this->result *= $byNum;
 
-		return $this;
+        return $this;
     }
 
-    public function subtractBy($byNum)
+    public function subtractBy($byNum): Task12
     {
-		if ($byNum === null) {
-			return $this;
-		}
+        if ($byNum === null) {
+            return $this;
+        }
         $this->result -= $byNum;
 
-		return $this;
+        return $this;
     }
 }
 
